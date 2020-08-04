@@ -98,30 +98,19 @@ WSGI_APPLICATION = 'chat.wsgi.application'
 # }
 
 
-# DATABASES = {
-#     'default': {
-#         "ENGINE": "djongo",
-#         "CLIENT": {
-#             "host": "mongodb+srv://admin:21VI1sXqjMM9fjP0@cluster0.mlqho.mongodb.net/?retryWrites=true&w=majority",
-#             "username": "admin",
-#             "password": "21VI1sXqjMM9fjP0",
-#             "authMechanism": "SCRAM-SHA-1",
-#         },
-#         "NAME" : "chat"
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'chat',
+        "ENGINE": "djongo",
         "CLIENT": {
-            'host': 'mongodb://admin:12345678@hari.zapto.org:27017/chat?authSource=admin',
-            'username': 'admin',
-            'password': '12345678'
+            "host": "mongodb+srv://admin:21VI1sXqjMM9fjP0@cluster0.mlqho.mongodb.net/?retryWrites=true&w=majority",
+            "username": "admin",
+            "password": "21VI1sXqjMM9fjP0",
+            "authMechanism": "SCRAM-SHA-1",
         },
+        "NAME" : "chat"
     }
 }
+
 
 
 
