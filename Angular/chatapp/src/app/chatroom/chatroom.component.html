@@ -1,23 +1,21 @@
-<div id = "frame">
-	<div class="content">
-		<div class="contact-profile">
-			<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-			<p>Harvey Specter</p>
-			<!-- <div class="social-media"> -->
-				<!-- <i class="fa fa-facebook" aria-hidden="true"></i>
-				<i class="fa fa-twitter" aria-hidden="true"></i>
-				<i class="fa fa-instagram" aria-hidden="true"></i> -->
-			<!-- </div> -->
-		</div>
-		<div class="messages" >
-			<app-chatbubble  *ngFor="let message of messages" text= {{message.text}} [isSelf]=message.isSelf ></app-chatbubble>
-		</div>
-		<div class="message-input">
-			<div class="wrap">
-			<input type="text" placeholder="Write your message..." />
-			<i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-			<button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-			</div>
+<div class="content">
+	<div class="contact-profile">
+		<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+		<p>Harvey Specter</p>
+		<!-- <div class="social-media"> -->
+			<!-- <i class="fa fa-facebook" aria-hidden="true"></i>
+			<i class="fa fa-twitter" aria-hidden="true"></i>
+			<i class="fa fa-instagram" aria-hidden="true"></i> -->
+		<!-- </div> -->
+	</div>
+	<div class="messages" >
+		<app-chatbubble  *ngFor="let message of messages" text= {{message.text}} [isSelf]=message.isSelf ></app-chatbubble>
+	</div>
+	<div class="message-input">
+		<div class="wrap">
+		<input type="text" placeholder="Write your message..." />
+		<button class="btn btn-primary submit " ><fa-icon [icon]="faPaperPlane"></fa-icon></button>
 		</div>
 	</div>
-</div>
+</div> 
+

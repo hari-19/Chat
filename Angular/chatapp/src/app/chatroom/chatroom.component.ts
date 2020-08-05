@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {faPaperPlane} from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-chatroom',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chatroom.component.scss']
 })
 export class ChatroomComponent implements OnInit {
+
+  faPaperPlane = faPaperPlane;
 
   messages = [
     {
