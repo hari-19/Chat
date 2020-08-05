@@ -35,4 +35,25 @@ body{
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
   -webkit-font-smoothing: antialiased;
   background: #27ae60;
+  
 }
+
+
+.scrollbar{
+  scrollbar-width: thin;
+  scrollbar-color: #a9a9a9 transparent;
+}
+
+/* Works on Chrome/Edge/Safari */
+.scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color:  #a9a9a9;
+  border-radius: 20px;
+  // border: 3px solid orange;
+}
+
