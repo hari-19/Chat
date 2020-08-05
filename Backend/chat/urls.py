@@ -25,6 +25,7 @@ router = routers.DefaultRouter()
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     # path('', include(router.urls)),
+    path('chat/', include('chatapi.urls') ),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     re_path(r'^rest-auth/', include('rest_auth.urls')),

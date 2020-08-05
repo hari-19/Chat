@@ -47,6 +47,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'rest_auth.registration',
     'corsheaders',
+    'channels',
+
+    'chatapi',
 
 
 ]
@@ -85,31 +88,41 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'chat.wsgi.application'
+ASGI_APPLICATION = 'chat.routing.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [("redis://:blackvirus19@192.168.1.20:6379")],
+        },
+    },
+}
 
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
-
 DATABASES = {
     'default': {
-        "ENGINE": "djongo",
-        "CLIENT": {
-            "host": "mongodb+srv://admin:21VI1sXqjMM9fjP0@cluster0.mlqho.mongodb.net/?retryWrites=true&w=majority",
-            "username": "admin",
-            "password": "21VI1sXqjMM9fjP0",
-            "authMechanism": "SCRAM-SHA-1",
-        },
-        "NAME" : "chat"
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         "ENGINE": "djongo",
+#         "CLIENT": {
+#             "host": "mongodb+srv://admin:21VI1sXqjMM9fjP0@cluster0.mlqho.mongodb.net/?retryWrites=true&w=majority",
+#             "username": "admin",
+#             "password": "21VI1sXqjMM9fjP0",
+#             "authMechanism": "SCRAM-SHA-1",
+#         },
+#         "NAME" : "chat"
+#     }
+# }
 
 
 
