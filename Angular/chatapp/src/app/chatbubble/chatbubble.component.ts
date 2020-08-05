@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-chatbubble',
@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chatbubble.component.scss']
 })
 export class ChatbubbleComponent implements OnInit {
+
+  @Input() isSelf:boolean=true;
+  @Input() text:string;
+  @Input() image:string = "../../assets/profile_placeholder.png";
 
   constructor() { }
 

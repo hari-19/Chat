@@ -9,8 +9,8 @@
 				<i class="fa fa-instagram" aria-hidden="true"></i> -->
 			<!-- </div> -->
 		</div>
-		<div class="messages">
-			<app-chatbubble></app-chatbubble>
+		<div class="messages" >
+			<app-chatbubble  *ngFor="let message of messages" text= {{message.text}} [isSelf]=message.isSelf ></app-chatbubble>
 		</div>
 		<div class="message-input">
 			<div class="wrap">
