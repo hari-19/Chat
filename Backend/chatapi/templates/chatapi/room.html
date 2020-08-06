@@ -7,7 +7,11 @@
 </head>
 <body>
     <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-    <input id="chat-message-input" type="text" size="100"><br>
+    <div>Chat Name</div>
+    <input id="chat-message-chat-name" type="text" size="100"><br>
+    <div>Message</div>
+    <input id="chat-message-input" type="text" size="100">
+    <br>
     <input id="chat-message-submit" type="button" value="Send">
     <!-- {{ room_name|json_script:"room-name" }} -->
     <script>
@@ -22,8 +26,9 @@
         );
 
         chatSocket.onmessage = function(e) {
+            console.log("asfasd")
             const data = JSON.parse(e.data);
-            document.querySelector('#chat-log').value += (data.message + '\n');
+            document.querySelector('#chat-log').value += (data.chat_name +" " +data.message + '\n');
         };
 
         chatSocket.onclose = function(e) {
@@ -39,8 +44,13 @@
 
         document.querySelector('#chat-message-submit').onclick = function(e) {
             const messageInputDom = document.querySelector('#chat-message-input');
+            const chatNameInputDom = document.querySelector('#chat-message-chat-name');
             const message = messageInputDom.value;
+            const chatName = chatNameInputDom.value;
+            console.log(message)
+            console.log(chatName)
             chatSocket.send(JSON.stringify({
+                'chat_name' : chatName,
                 'message': message
             }));
             messageInputDom.value = '';

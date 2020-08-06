@@ -8,7 +8,7 @@ from django.db import transaction
 User = get_user_model()
 
 class Contact(models.Model):
-    user = models.ForeignKey(User, related_name="contacts", on_delete=models.CASCADE)
+    user = models.OneToOneField(User, related_name="contacts", on_delete=models.CASCADE)
     friends = models.ManyToManyField(User, blank=True)
 
     def __str__(self):
