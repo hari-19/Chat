@@ -90,15 +90,23 @@ TEMPLATES = [
 WSGI_APPLICATION = 'chat.wsgi.application'
 ASGI_APPLICATION = 'chat.routing.application'
 
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             "hosts": [("redis://:blackvirus19@192.168.1.20:6379")],
+#         },
+#     },
+# }
+
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [("redis://:blackvirus19@192.168.1.20:6379")],
+            "hosts": [('127.0.0.1', 6379)],
         },
     },
 }
-
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
