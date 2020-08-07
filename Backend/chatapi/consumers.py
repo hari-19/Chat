@@ -2,7 +2,7 @@ import json
 from django.contrib.auth import get_user_model
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
-from .helper import get_chat_name
+from .helper import get_chat_name, get_chat_name_id
 
 User = get_user_model()
 
@@ -40,7 +40,19 @@ class ChatConsumer(WebsocketConsumer):
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
-        chat_name = text_data_json['chat_name']
+
+        try:
+            chat_name = text_data_json['chat_name']
+        except Exception as e:
+            print(str(e))
+            None
+
+        try:
+            to_id = text_data_json['to_id']
+            chat_name = get_chat_name_id(int(self.user.id), int(to_id))
+        except Exception as e:
+            print(e)
+            None
 
         # Send message to room group
         async_to_sync(self.channel_layer.group_send)(

@@ -7,17 +7,23 @@
 </head>
 <body>
     <textarea id="chat-log" cols="100" rows="20"></textarea><br>
+    <div id="error"></div>
     <div>Chat Name</div>
     <input id="chat-message-chat-name" type="text" size="100"><br>
+    <div>OR</div>
+    <div>To ID</div>
+    <input id="chat-message-to-id" type="text" size="100"><br>
     <div>Message</div>
     <input id="chat-message-input" type="text" size="100">
     <br>
     <input id="chat-message-submit" type="button" value="Send">
+
+    
     <!-- {{ room_name|json_script:"room-name" }} -->
     <script>
         // const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
-        const chatSocket = new WebSocket(
+        var chatSocket = new WebSocket(
             'ws://'
             + window.location.host
             + '/ws/chat/'
@@ -33,6 +39,11 @@
 
         chatSocket.onclose = function(e) {
             console.error('Chat socket closed unexpectedly');
+            chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/chat/'
+           );
         };
 
         document.querySelector('#chat-message-input').focus();
@@ -45,15 +56,37 @@
         document.querySelector('#chat-message-submit').onclick = function(e) {
             const messageInputDom = document.querySelector('#chat-message-input');
             const chatNameInputDom = document.querySelector('#chat-message-chat-name');
+            const toIdInputDom = document.querySelector('#chat-message-to-id');
             const message = messageInputDom.value;
             const chatName = chatNameInputDom.value;
-            console.log(message)
-            console.log(chatName)
-            chatSocket.send(JSON.stringify({
+            const toID = toIdInputDom.value;
+            
+            if(chatName == "" && toID== "")
+            {       
+                    var error = document.getElementById('error')
+                    error.innerHTML = "Specify any one, chatname or ID"
+                    return;
+            }
+
+            if(chatName != "")
+            {
+                chatSocket.send(JSON.stringify({
                 'chat_name' : chatName,
                 'message': message
             }));
+            }
+            else{
+                chatSocket.send(JSON.stringify({
+                'to_id' : toID,
+                'message': message
+            }));
+            }
+
+            
             messageInputDom.value = '';
+
+            var error = document.getElementById('error')
+            error.innerHTML = ""
         };
     </script>
 </body>
